@@ -1,0 +1,15 @@
+---
+- name: Install phpmyadmin with docker
+  hosts: webserver
+  gather_facts: false
+
+  roles:
+    - role: server
+      tags:
+        - server
+    - role: pma
+      tags:
+        - pma
+    - role: mysql
+      tags:
+        - mysql

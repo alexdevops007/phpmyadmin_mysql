@@ -1,0 +1,18 @@
+---
+- name: pull mysql docker image
+  docker_image:
+    name: mysql
+    source: pull
+    tag: 8.0.29
+    state: present
+
+- name: start mysql container
+  docker_container:
+    name: mysql
+    image: mysql:8.0.29
+    state: started
+    restart_policy: always
+    ports:
+      - "33000:3306"
+    env:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"

@@ -1,0 +1,34 @@
+---
+- name: remove container
+  hosts: webserver
+  gather_facts: false
+  remote_user: root
+
+  vars_prompt:
+    - name: start
+      prompt: Press enter to continue or ctrl/c
+
+  tasks:
+    - name: stop phpmyadmin container
+      docker_container:
+        name: phpmyadmin
+        state: stopped
+
+    - name: delete phpmyadmin docker image
+      docker_image:
+        name: phpmyadmin
+        tag: 5.2.0
+        state: absent
+        force_absent: yes
+
+    - name: stop mysql container
+      docker_container:
+        name: mysql
+        state: stopped
+
+    - name: delete mysql docker image
+      docker_image:
+        name: mysql
+        tag: 8.0.29
+        state: absent
+        force_absent: yes

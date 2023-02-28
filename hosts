@@ -1,0 +1,4 @@
+# YAML inventory
+webserver:
+  hosts:
+    192.168.1.67:
